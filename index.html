@@ -99,11 +99,9 @@
             0% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.05);
             }
-
             100% {
                 transform: scale(1);
             }
@@ -1143,43 +1141,26 @@
             }
         }
 
-        function clearAllData() {
-            if (confirm('ATTENZIONE: Stai per cancellare completamente tutti i dati del torneo (squadre, gironi, eliminazione diretta) dal browser. Questa operazione non può essere annullata. Sei sicuro di voler continuare?')) {
-                if (confirm('Conferma definitiva: tutti i dati verranno eliminati permanentemente. Procedere?')) {
-                    // Cancella dal localStorage
-                    localStorage.removeItem('tournamentData');
-
-                    // Resetta completamente tutti i dati
-                    tournamentData = {
-                        format: null,
-                        playersPerTeam: null,
-                        teams: [],
-                        groups: [],
-                        knockoutMatches: [],
-                        currentPhase: 'configuration'
-                    };
-
-                    // Riporta l'interfaccia alla configurazione iniziale
-                    document.getElementById('tournament-config').style.display = 'block';
-                    document.getElementById('main-content').classList.remove('active');
-                    document.getElementById('tournament-status').innerHTML =
-                        `<span class="status-badge status-pending">Configurazione in corso...</span>`;
-                    document.getElementById('format-info').style.display = 'none';
-                    document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('selected'));
-
-                    // Pulisce le visualizzazioni
-                    document.getElementById('teams-list').innerHTML = '';
-                    document.getElementById('groups-container').innerHTML = '';
-                    document.getElementById('knockout-container').innerHTML = '';
-
-                    // Reset del form
-                    document.getElementById('team-form').reset();
-
-                    // Aggiorna le visualizzazioni
-                    updateStatsOverview();
-
-                    alert('Tutti i dati sono stati cancellati con successo!');
-                }
+        // Funzione per tornare alla configurazione e resettare tutto
+        function goBackToConfig() {
+            if (confirm('Sei sicuro di voler tornare alla configurazione? Tutti i dati (squadre, gironi, eliminazione diretta) verranno resettati.')) {
+                // Resetta completamente tutti i dati
+                tournamentData = {
+                    format: null,
+                    playersPerTeam: null,
+                    teams: [],
+                    groups: [],
+                    knockoutMatches: [],
+                    currentPhase: 'configuration'
+                };
+                document.getElementById('tournament-config').style.display = 'block';
+                document.getElementById('main-content').classList.remove('active');
+                document.getElementById('tournament-status').innerHTML =
+                    `<span class="status-badge status-pending">Configurazione in corso...</span>`;
+                document.getElementById('format-info').style.display = 'none';
+                document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('selected'));
+                saveToStorage();
+                updateStatsOverview();
             }
         }
 
