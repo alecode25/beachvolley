@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo Beach Volley Rimini 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #F0E68C 50%, #FFB6C1 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            color: #2c5aa0;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .tournament-config {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .config-title {
+            font-size: 1.8em;
+            color: #2c5aa0;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .format-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .format-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 25px 35px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            min-width: 150px;
+        }
+
+        .format-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .format-btn.selected {
+            background: linear-gradient(45deg, #2c5aa0, #1e3f73);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .tournament-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #2c5aa0;
+        }
+
+        .main-content {
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab.active {
+            background: #2c5aa0;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c5aa0;
+            font-size: 16px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2c5aa0;
+            box-shadow: 0 0 10px rgba(44, 90, 160, 0.2);
+        }
+
+        .player-inputs {
+            display: grid;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #2c5aa0, #1e3f73);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #1e3f73, #2c5aa0);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #28a745, #218838);
+        }
+
+        .team-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 5px solid #2c5aa0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 10px;
+        }
+
+        .players-list {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .group-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .group-card {
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #4CAF50;
+            width: 100%;
+        }
+
+        .group-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c5aa0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .match {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-teams {
+            flex-grow: 1;
+        }
+
+        .score-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .score-input {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .standings {
+            margin-top: 15px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .standings table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .standings th,
+        .standings td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+        .standings th {
+            background: #2c5aa0;
+            color: white;
+            width: auto;
+        }
+
+        .standings td {
+            font-size: 14px;
+        }
+
+        .qualified {
+            background-color: #d4edda;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .status-configured {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .export-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .stats-overview {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #2c5aa0;
+        }
+
+        @media (max-width: 768px) {
+            .format-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .format-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .group-container {
+                grid-template-columns: 1fr;
+            }
+
+            .standings table {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏐 Torneo Beach Volley Rimini</h1>
+            <p class="subtitle">Sistema di Gestione Torneo Configurabile</p>
+            <div id="tournament-status">
+                <span class="status-badge status-pending">Configurazione in corso...</span>
+            </div>
+        </header>
+
+        <!-- Configurazione iniziale del torneo -->
+        <div id="tournament-config" class="tournament-config">
+            <h2 class="config-title">Scegli il formato del torneo</h2>
+            <p style="margin-bottom: 30px; color: #666; font-size: 16px;">
+                Seleziona quanti giocatori per squadra parteciperanno al torneo
+            </p>
+
+            <div class="format-buttons">
+                <button class="format-btn" onclick="selectFormat(3)">
+                    <div>3 vs 3</div>
+                    <small style="display: block; margin-top: 5px; opacity: 0.8;">3 giocatori per squadra</small>
+                </button>
+                <button class="format-btn" onclick="selectFormat(4)">
+                    <div>4 vs 4</div>
+                    <small style="display: block; margin-top: 5px; opacity: 0.8;">4 giocatori per squadra</small>
+                </button>
+                <button class="format-btn" onclick="selectFormat(5)">
+                    <div>5 vs 5</div>
+                    <small style="display: block; margin-top: 5px; opacity: 0.8;">5 giocatori per squadra</small>
+                </button>
+            </div>
+
+            <div id="format-info" class="tournament-info" style="display: none;">
+                <h3>Configurazione Selezionata</h3>
+                <p id="format-details"></p>
+                <button class="btn btn-success" onclick="startTournament()" style="margin-top: 15px;">
+                    Inizia il Torneo
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenuto principale del torneo -->
+        <div id="main-content" class="main-content">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('teams')">Squadre</button>
+                <button class="tab" onclick="showTab('groups')">Gironi</button>
+                <button class="tab" onclick="showTab('knockout')">Eliminazione Diretta</button>
+                <button class="tab" onclick="showTab('export')">Esporta Dati</button>
+            </div>
+
+            <!-- Sezione Squadre -->
+            <div id="teams-content" class="content active">
+                <h2>Registrazione Squadre</h2>
+
+                <form id="team-form" onsubmit="addTeam(event)">
+                    <div class="form-group">
+                        <label for="team-name">Nome Squadra:</label>
+                        <input type="text" id="team-name" required placeholder="Inserisci nome squadra...">
+                    </div>
+
+                    <div id="players-container">
+                        <label>Giocatori:</label>
+                        <div class="player-inputs" id="player-inputs">
+                            <!-- I campi giocatori verranno aggiunti dinamicamente -->
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn">Aggiungi Squadra</button>
+                </form>
+
+                <div id="teams-list">
+                    <!-- Le squadre registrate appariranno qui -->
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-success" onclick="generateGroups()" id="generate-groups-btn" disabled>
+                        Genera Gironi Automaticamente
+                    </button>
+                    <p style="color: #666; margin-top: 10px; font-size: 14px;">
+                        Registra almeno 4 squadre per generare i gironi
+                    </p>
+                    <button class="btn btn-danger" onclick="goBackToConfig()" style="margin-top: 10px;">
+                        Torna Indietro
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sezione Gironi -->
+            <div id="groups-content" class="content">
+                <h2>Fase a Gironi</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Le prime 2 squadre di ogni girone si qualificano per la fase ad eliminazione diretta
+                </p>
+
+                <div class="tournament-info"
+                    style="margin-top: 20px; background: #e8f4fd; padding: 15px; border-radius: 8px;">
+                    <h4 style="color: #2c5aa0; margin-bottom: 10px;">📋 Criteri di Classifica</h4>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>1°</strong> Punti in classifica (3 per vittoria,
+                        0 per sconfitta)</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>2°</strong> Differenza punti (punti fatti - punti
+                        subiti)</p>
+                    <p style="margin: 5px 0; font-size: 14px;"><strong>3°</strong> Punti fatti</p>
+                    <p style="margin-top: 10px; font-size: 13px; color: #666;"><em>Le prime 2 squadre di ogni girone si
+                            qualificano per l'eliminazione diretta</em></p>
+                </div>
+
+                <div id="groups-container" class="group-container">
+                    <!-- I gironi verranno generati qui -->
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button class="btn btn-success" onclick="generateKnockoutPhase()" id="generate-knockout-btn"
+                        disabled>
+                        Genera Fase Eliminazione Diretta
+                    </button>
+                    <button class="btn btn-danger" onclick="goBackToConfig()" style="margin-top: 10px;">
+                        Torna Indietro
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sezione Eliminazione Diretta -->
+            <div id="knockout-content" class="content">
+                <h2>Eliminazione Diretta</h2>
+                <p style="margin-bottom: 20px; color: #666;">
+                    Le squadre qualificate dai gironi si sfidano ad eliminazione diretta
+                </p>
+
+                <div id="knockout-container">
+                    <!-- Il tabellone ad eliminazione diretta verrà generato qui -->
+                </div>
+                <button class="btn btn-danger" onclick="goBackToConfig()" style="margin-top: 20px;">
+                    Torna Indietro
+                </button>
+            </div>
+
+            <!-- Sezione Esportazione -->
+            <div id="export-content" class="content">
+                <h2>Esporta e Salva Dati</h2>
+
+                <div class="stats-overview" id="stats-overview">
+                    <!-- Panoramica statistiche verrà generata qui -->
+                </div>
+
+                <div class="export-section">
+                    <h3>Salvataggio Automatico</h3>
+                    <p>Tutti i dati vengono salvati automaticamente nel browser. Usa i pulsanti qui sotto per esportare
+                        i dati.</p>
+
+                    <button class="btn" onclick="exportTournamentData()">Scarica Dati Torneo (JSON)</button>
+                    <button class="btn" onclick="importTournamentData()">Carica Dati Torneo</button>
+                    <input type="file" id="import-file" accept=".json" style="display: none;"
+                        onchange="handleFileImport(event)">
+
+                    <div id="export-preview" style="margin-top: 20px;">
+                        <!-- Anteprima dati esportazione -->
+                    </div>
+                </div>
+                <button class="btn btn-danger" onclick="goBackToConfig()" style="margin-top: 20px;">
+                    Torna Indietro
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Struttura dati globale del torneo
+        let tournamentData = {
+            format: null,
+            playersPerTeam: null,
+            teams: [],
+            groups: [],
+            knockoutMatches: [],
+            currentPhase: 'configuration'
+        };
+
+        // Carica dati dal localStorage all'avvio
+        window.onload = function () {
+            loadFromStorage();
+            updateStatsOverview(); // Aggiorna le statistiche all'avvio
+        };
+
+        // Selezione formato torneo
+        function selectFormat(playersCount) {
+            document.querySelectorAll('.format-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            tournamentData.format = `${playersCount}vs${playersCount}`;
+            tournamentData.playersPerTeam = playersCount;
+            document.getElementById('format-info').style.display = 'block';
+            document.getElementById('format-details').innerHTML = `
+                <strong>Formato:</strong> ${playersCount} vs ${playersCount}<br>
+                <strong>Giocatori per squadra:</strong> ${playersCount}<br>
+                <strong>Con 80+ persone:</strong> Circa ${Math.floor(80 / playersCount)}+ squadre<br>
+                <strong>Struttura:</strong> Fase a gironi → Eliminazione diretta
+            `;
+        }
+
+        // Avvio torneo
+        function startTournament() {
+            if (!tournamentData.format) {
+                alert('Seleziona prima un formato!');
+                return;
+            }
+            document.getElementById('tournament-config').style.display = 'none';
+            document.getElementById('main-content').classList.add('active');
+            document.getElementById('tournament-status').innerHTML =
+                `<span class="status-badge status-configured">Formato: ${tournamentData.format}</span>`;
+            generatePlayerInputs();
+            tournamentData.currentPhase = 'registration';
+            saveToStorage();
+            updateStatsOverview();
+        }
+
+        // Genera campi input per i giocatori
+        function generatePlayerInputs() {
+            const container = document.getElementById('player-inputs');
+            container.innerHTML = '';
+            for (let i = 1; i <= tournamentData.playersPerTeam; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Nome Giocatore ${i}`;
+                input.id = `player-${i}`;
+                input.required = true;
+                container.appendChild(input);
+            }
+        }
+
+        // Aggiunta squadra
+        function addTeam(event) {
+            event.preventDefault();
+            const teamName = document.getElementById('team-name').value;
+            const players = [];
+            for (let i = 1; i <= tournamentData.playersPerTeam; i++) {
+                const playerName = document.getElementById(`player-${i}`).value;
+                if (playerName.trim()) players.push(playerName.trim());
+            }
+            if (players.length !== tournamentData.playersPerTeam) {
+                alert(`Inserisci esattamente ${tournamentData.playersPerTeam} giocatori!`);
+                return;
+            }
+            const team = {
+                id: Date.now(),
+                name: teamName,
+                players: players,
+                stats: { played: 0, won: 0, lost: 0, points: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0 }
+            };
+            tournamentData.teams.push(team);
+            document.getElementById('team-form').reset();
+            updateTeamsDisplay();
+            updateGenerateGroupsButton();
+            saveToStorage();
+            updateStatsOverview();
+        }
+
+        // Aggiorna visualizzazione squadre
+        function updateTeamsDisplay() {
+            const container = document.getElementById('teams-list');
+            container.innerHTML = `<h3>Squadre Registrate (${tournamentData.teams.length})</h3>`;
+            tournamentData.teams.forEach(team => {
+                const teamCard = document.createElement('div');
+                teamCard.className = 'team-card';
+                teamCard.innerHTML = `
+                    <div class="team-name">${team.name}</div>
+                    <div class="players-list">Giocatori: ${team.players.join(', ')}</div>
+                    <button class="btn btn-danger" onclick="removeTeam(${team.id})">Rimuovi</button>
+                `;
+                container.appendChild(teamCard);
+            });
+        }
+
+        // Rimozione squadra
+        function removeTeam(teamId) {
+            if (confirm('Sei sicuro di voler rimuovere questa squadra?')) {
+                tournamentData.teams = tournamentData.teams.filter(team => team.id !== teamId);
+                updateTeamsDisplay();
+                updateGenerateGroupsButton();
+                saveToStorage();
+                updateStatsOverview();
+            }
+        }
+
+        // Aggiorna stato pulsante genera gironi
+        function updateGenerateGroupsButton() {
+            const btn = document.getElementById('generate-groups-btn');
+            btn.disabled = tournamentData.teams.length < 4;
+            btn.textContent = tournamentData.teams.length >= 4 ? `Genera Gironi (${tournamentData.teams.length} squadre)` : `Servono almeno 4 squadre (${tournamentData.teams.length}/4)`;
+        }
+
+        // Generazione gironi
+        function generateGroups() {
+            if (tournamentData.teams.length < 4) {
+                alert('Servono almeno 4 squadre per generare i gironi!');
+                return;
+            }
+            const shuffledTeams = [...tournamentData.teams].sort(() => Math.random() - 0.5);
+            const totalTeams = shuffledTeams.length;
+            const idealGroupSize = 4;
+            let numGroups = Math.floor(totalTeams / idealGroupSize);
+            let remainingTeams = totalTeams % idealGroupSize;
+            if (remainingTeams > 0 && remainingTeams >= 3) numGroups += 1;
+            tournamentData.groups = [];
+            let teamIndex = 0;
+            for (let i = 0; i < numGroups; i++) {
+                let teamsForThisGroup = idealGroupSize;
+                if (remainingTeams > 0 && remainingTeams < 3 && i < remainingTeams) teamsForThisGroup += 1;
+                if (i === numGroups - 1 && remainingTeams >= 3) teamsForThisGroup = remainingTeams;
+                const groupTeams = shuffledTeams.slice(teamIndex, teamIndex + teamsForThisGroup);
+                teamIndex += teamsForThisGroup;
+                const group = {
+                    id: i + 1,
+                    name: `Girone ${String.fromCharCode(65 + i)}`,
+                    teams: groupTeams,
+                    matches: generateGroupMatches(groupTeams),
+                    standings: [...groupTeams]
+                };
+                tournamentData.groups.push(group);
+            }
+            tournamentData.currentPhase = 'groups';
+            updateGroupsDisplay();
+            showTab('groups');
+            saveToStorage();
+            updateStatsOverview();
+        }
+
+        // Genera partite per un girone
+        function generateGroupMatches(teams) {
+            const matches = [];
+            for (let i = 0; i < teams.length; i++) {
+                for (let j = i + 1; j < teams.length; j++) {
+                    matches.push({
+                        id: Date.now() + Math.random(),
+                        team1: teams[i],
+                        team2: teams[j],
+                        score1: null,
+                        score2: null,
+                        completed: false
+                    });
+                }
+            }
+            return matches;
+        }
+
+        // Aggiorna visualizzazione gironi
+        function updateGroupsDisplay() {
+            const container = document.getElementById('groups-container');
+            container.innerHTML = '';
+            tournamentData.groups.forEach(group => {
+                recalculateGroupStats(group); // Recalcola tutte le stats per il girone
+                const groupCard = document.createElement('div');
+                groupCard.className = 'group-card';
+                let matchesHtml = '';
+                group.matches.forEach(match => {
+                    matchesHtml += `
+                        <div class="match">
+                            <div class="match-teams">
+                                ${match.team1.name} vs ${match.team2.name}
+                            </div>
+                            <div class="score-inputs">
+                                <input type="number" class="score-input" 
+                                       value="${match.score1 || ''}" 
+                                       placeholder="0"
+                                       onchange="updateMatchScore(${group.id}, ${match.id}, 1, this.value)">
+                                -
+                                <input type="number" class="score-input" 
+                                       value="${match.score2 || ''}" 
+                                       placeholder="0"
+                                       onchange="updateMatchScore(${group.id}, ${match.id}, 2, this.value)">
+                            </div>
+                        </div>
+                    `;
+                });
+                const standings = calculateGroupStandings(group);
+                let standingsHtml = `
+                    <div class="standings">
+                        <h4>Classifica</h4>
+                        <table>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Squadra</th>
+                                <th>Pt</th>
+                                <th>G</th>
+                                <th>V</th>
+                                <th>S</th>
+                                <th>GF</th>
+                                <th>GS</th>
+                                <th>DR</th>
+                            </tr>
+                `;
+                standings.forEach((team, index) => {
+                    const numQualified = group.teams.length >= 3 ? 2 : 1;
+                    const qualified = index < numQualified ? 'qualified' : '';
+                    // Verifica che i dati siano definiti
+                    const points = team.stats.points || 0;
+                    const played = team.stats.played || 0;
+                    const won = team.stats.won || 0;
+                    const lost = team.stats.lost || 0;
+                    const goalsFor = team.stats.goalsFor || 0;
+                    const goalsAgainst = team.stats.goalsAgainst || 0;
+                    const goalDifference = team.stats.goalDifference || 0;
+                    standingsHtml += `
+                        <tr class="${qualified}">
+                            <td>${index + 1}</td>
+                            <td><strong>${team.name}</strong></td>
+                            <td><strong>${points}</strong></td>
+                            <td>${played}</td>
+                            <td>${won}</td>
+                            <td>${lost}</td>
+                            <td>${goalsFor}</td>
+                            <td>${goalsAgainst}</td>
+                            <td>${goalDifference >= 0 ? '+' : ''}${goalDifference}</td>
+                        </tr>
+                    `;
+                });
+                standingsHtml += '</table></div>';
+                groupCard.innerHTML = `
+                    <div class="group-title">${group.name}</div>
+                    <h4>Partite</h4>
+                    ${matchesHtml}
+                    ${standingsHtml}
+                `;
+                container.appendChild(groupCard);
+            });
+            updateGenerateKnockoutButton();
+            updateStatsOverview();
+        }
+
+        // Aggiorna punteggio partita
+        function updateMatchScore(groupId, matchId, teamNumber, score) {
+            const group = tournamentData.groups.find(g => g.id === groupId);
+            const match = group.matches.find(m => m.id === matchId);
+            score = parseInt(score) || 0;
+            if (teamNumber === 1) match.score1 = score;
+            else match.score2 = score;
+            if (match.score1 !== null && match.score2 !== null) {
+                match.completed = true;
+            } else {
+                match.completed = false;
+            }
+            updateGroupsDisplay(); // Chiama updateGroupsDisplay che recalcola tutto
+            saveToStorage();
+        }
+
+        // Nuova funzione per recalcolare tutte le stats di un girone da zero
+        function recalculateGroupStats(group) {
+            // Reset tutte le stats per le squadre del girone
+            group.teams.forEach(team => {
+                team.stats.played = 0;
+                team.stats.won = 0;
+                team.stats.lost = 0;
+                team.stats.points = 0;
+                team.stats.goalsFor = 0;
+                team.stats.goalsAgainst = 0;
+                team.stats.goalDifference = 0;
+            });
+
+            // Per ogni match completato, aggiorna le stats
+            group.matches.forEach(match => {
+                if (match.completed) {
+                    const team1 = match.team1;
+                    const team2 = match.team2;
+                    team1.stats.played += 1;
+                    team2.stats.played += 1;
+                    team1.stats.goalsFor += match.score1;
+                    team1.stats.goalsAgainst += match.score2;
+                    team2.stats.goalsFor += match.score2;
+                    team2.stats.goalsAgainst += match.score1;
+                    team1.stats.goalDifference = team1.stats.goalsFor - team1.stats.goalsAgainst;
+                    team2.stats.goalDifference = team2.stats.goalsFor - team2.stats.goalsAgainst;
+                    if (match.score1 > match.score2) {
+                        team1.stats.won += 1;
+                        team1.stats.points += 3;
+                        team2.stats.lost += 1;
+                    } else if (match.score2 > match.score1) {
+                        team2.stats.won += 1;
+                        team2.stats.points += 3;
+                        team1.stats.lost += 1;
+                    } else {
+                        team1.stats.points += 1;
+                        team2.stats.points += 1;
+                        team1.stats.lost += 1;
+                        team2.stats.lost += 1;
+                    }
+                }
+            });
+            group.standings = calculateGroupStandings(group);
+        }
+
+        // Calcola classifica del girone
+        function calculateGroupStandings(group) {
+            return group.teams.sort((a, b) => {
+                if (b.stats.points !== a.stats.points) return b.stats.points - a.stats.points;
+                if (b.stats.goalDifference !== a.stats.goalDifference) return b.stats.goalDifference - a.stats.goalDifference;
+                return b.stats.goalsFor - a.stats.goalsFor;
+            });
+        }
+
+        // Aggiorna stato pulsante genera eliminazione diretta
+        function updateGenerateKnockoutButton() {
+            const allMatchesCompleted = tournamentData.groups.every(group => group.matches.every(match => match.completed));
+            const btn = document.getElementById('generate-knockout-btn');
+            btn.disabled = !allMatchesCompleted;
+            btn.textContent = allMatchesCompleted ? 'Genera Fase Eliminazione Diretta' : 'Completa tutte le partite dei gironi';
+        }
+
+        // Genera fase eliminazione diretta
+        function generateKnockoutPhase() {
+            const qualifiedTeams = [];
+            tournamentData.groups.forEach(group => {
+                const standings = calculateGroupStandings(group);
+                const numQualified = group.teams.length >= 3 ? 2 : 1;
+                qualifiedTeams.push(...standings.slice(0, numQualified));
+            });
+            console.log('Squadre qualificate:', qualifiedTeams.map(t => t.name));
+
+            // Calcola la potenza di 2 più vicina
+            let totalTeams = qualifiedTeams.length;
+            let nextPowerOfTwo = 1;
+            while (nextPowerOfTwo < totalTeams) nextPowerOfTwo *= 2;
+            if (totalTeams !== nextPowerOfTwo) {
+                console.log(`Aggiungendo ${nextPowerOfTwo - totalTeams} squadre bye...`);
+                for (let i = totalTeams; i < nextPowerOfTwo; i++) {
+                    qualifiedTeams.push({ name: `Bye ${i + 1}`, id: Date.now() + i, stats: { played: 0, won: 1, lost: 0, points: 3, goalsFor: 0, goalsAgainst: 0, goalDifference: 0 } });
+                }
+            }
+
+            tournamentData.knockoutMatches = generateKnockoutBracket(qualifiedTeams);
+            tournamentData.currentPhase = 'knockout';
+            updateKnockoutDisplay();
+            showTab('knockout');
+            saveToStorage();
+            updateStatsOverview();
+        }
+
+        function isPowerOfTwo(n) {
+            return n > 0 && (n & (n - 1)) === 0;
+        }
+
+        function generateKnockoutBracket(teams) {
+            teams = [...teams].sort(() => Math.random() - 0.5);
+            const bracket = [];
+            let currentRound = [];
+            for (let i = 0; i < teams.length; i += 2) {
+                currentRound.push({
+                    id: Date.now() + i,
+                    team1: teams[i],
+                    team2: teams[i + 1],
+                    score1: null,
+                    score2: null,
+                    completed: false,
+                    winner: null
+                });
+            }
+            bracket.push(currentRound);
+            return bracket;
+        }
+
+        function updateKnockoutDisplay() {
+            const container = document.getElementById('knockout-container');
+            container.innerHTML = '<h3>Tabellone Eliminazione Diretta</h3>';
+            let html = '';
+
+            // Determina il numero totale di round e il numero iniziale di squadre
+            const totalRounds = tournamentData.knockoutMatches.length;
+            const initialTeamCount = tournamentData.knockoutMatches[0] ? tournamentData.knockoutMatches[0].length * 2 : 0;
+
+            // Assegna etichette dinamiche in base al numero di squadre
+            const roundNames = [];
+            if (initialTeamCount === 4) {
+                roundNames[0] = 'Semifinali';
+                roundNames[1] = 'Finale';
+            } else if (initialTeamCount === 8) {
+                roundNames[0] = 'Quarti di Finale';
+                roundNames[1] = 'Semifinali';
+                roundNames[2] = 'Finale';
+            } else if (initialTeamCount === 16) {
+                roundNames[0] = 'Ottavi di Finale';
+                roundNames[1] = 'Quarti di Finale';
+                roundNames[2] = 'Semifinali';
+                roundNames[3] = 'Finale';
+            } else {
+                for (let i = 0; i < totalRounds; i++) {
+                    roundNames[i] = `Round ${i + 1}`;
+                }
+            }
+
+            tournamentData.knockoutMatches.forEach((round, index) => {
+                html += `<h4>${roundNames[index] || `Round ${index + 1}`}</h4>`;
+                round.forEach(match => {
+                    html += `
+                <div class="match">
+                    <div class="match-teams">
+                        ${match.team1 ? match.team1.name : 'TBD'} vs ${match.team2 ? match.team2.name : 'TBD'}
+                    </div>
+                    <div class="score-inputs">
+                        <input type="number" class="score-input" 
+                               value="${match.score1 || ''}" 
+                               placeholder="0"
+                               onchange="updateKnockoutMatchScore(${match.id}, 1, this.value)">
+                        -
+                        <input type="number" class="score-input" 
+                               value="${match.score2 || ''}" 
+                               placeholder="0"
+                               onchange="updateKnockoutMatchScore(${match.id}, 2, this.value)">
+                    </div>
+                </div>
+            `;
+                });
+            });
+            container.innerHTML += html;
+        }
+
+        function updateKnockoutMatchScore(matchId, teamNumber, score) {
+            let matchFound = false;
+            tournamentData.knockoutMatches.forEach(round => {
+                const match = round.find(m => m.id === matchId);
+                if (match) {
+                    matchFound = true;
+                    score = parseInt(score) || 0;
+                    if (teamNumber === 1) match.score1 = score;
+                    else match.score2 = score;
+                    if (match.score1 !== null && match.score2 !== null) {
+                        match.completed = true;
+                        if (match.score1 > match.score2) match.winner = match.team1;
+                        else if (match.score2 > match.score1) match.winner = match.team2;
+                        else {
+                            alert('Pareggio! Gestisci tiebreaker manualmente.');
+                            match.completed = false;
+                            match.winner = null;
+                        }
+                    }
+                }
+            });
+            if (!matchFound) {
+                alert('Partita non trovata!');
+                return;
+            }
+            updateKnockoutDisplay();
+            checkAndGenerateNextRound();
+            saveToStorage();
+            updateStatsOverview();
+        }
+
+        function checkAndGenerateNextRound() {
+            const lastRound = tournamentData.knockoutMatches[tournamentData.knockoutMatches.length - 1];
+            if (lastRound.every(m => m.completed) && lastRound.length > 1) {
+                const winners = lastRound.map(m => m.winner).filter(w => w);
+                if (winners.length % 2 !== 0) {
+                    alert('Numero dispari di vincitori! Impossibile procedere.');
+                    return;
+                }
+                const nextRound = [];
+                for (let i = 0; i < winners.length; i += 2) {
+                    nextRound.push({
+                        id: Date.now() + i,
+                        team1: winners[i],
+                        team2: winners[i + 1],
+                        score1: null,
+                        score2: null,
+                        completed: false,
+                        winner: null
+                    });
+                }
+                tournamentData.knockoutMatches.push(nextRound);
+                updateKnockoutDisplay();
+                saveToStorage();
+            }
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`button[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.querySelectorAll('.content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`${tabId}-content`).classList.add('active');
+            updateStatsOverview(); // Aggiorna le statistiche quando cambi tab
+        }
+
+        function saveToStorage() {
+            localStorage.setItem('tournamentData', JSON.stringify(tournamentData));
+        }
+
+        function loadFromStorage() {
+            const saved = localStorage.getItem('tournamentData');
+            if (saved) {
+                tournamentData = JSON.parse(saved);
+                if (tournamentData.currentPhase !== 'configuration') {
+                    document.getElementById('tournament-config').style.display = 'none';
+                    document.getElementById('main-content').classList.add('active');
+                    document.getElementById('tournament-status').innerHTML =
+                        `<span class="status-badge status-configured">Formato: ${tournamentData.format}</span>`;
+                    generatePlayerInputs();
+                    updateTeamsDisplay();
+                    updateGenerateGroupsButton();
+                    if (tournamentData.groups.length > 0) updateGroupsDisplay();
+                    if (tournamentData.knockoutMatches.length > 0) updateKnockoutDisplay();
+                    showTab(tournamentData.currentPhase === 'groups' ? 'groups' : tournamentData.currentPhase === 'knockout' ? 'knockout' : 'teams');
+                }
+            }
+            updateStatsOverview();
+        }
+
+        function exportTournamentData() {
+            const dataStr = JSON.stringify(tournamentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'tournament.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importTournamentData() {
+            document.getElementById('import-file').click();
+        }
+
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        tournamentData = JSON.parse(e.target.result);
+                        saveToStorage();
+                        loadFromStorage();
+                        alert('Dati importati con successo!');
+                    } catch (error) {
+                        alert('Errore durante l\'importazione: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // Funzione per tornare alla configurazione e resettare tutto
+        function goBackToConfig() {
+            if (confirm('Sei sicuro di voler tornare alla configurazione? Tutti i dati (squadre, gironi, eliminazione diretta) verranno resettati.')) {
+                // Resetta completamente tutti i dati
+                tournamentData = {
+                    format: null,
+                    playersPerTeam: null,
+                    teams: [],
+                    groups: [],
+                    knockoutMatches: [],
+                    currentPhase: 'configuration'
+                };
+                document.getElementById('tournament-config').style.display = 'block';
+                document.getElementById('main-content').classList.remove('active');
+                document.getElementById('tournament-status').innerHTML =
+                    `<span class="status-badge status-pending">Configurazione in corso...</span>`;
+                document.getElementById('format-info').style.display = 'none';
+                document.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('selected'));
+                saveToStorage();
+                updateStatsOverview();
+            }
+        }
+
+        // Funzione per aggiornare la panoramica delle statistiche
+        function updateStatsOverview() {
+            const overview = document.getElementById('stats-overview');
+            let totalTeams = tournamentData.teams.length;
+            let totalMatches = 0;
+            let totalPlayedMatches = 0;
+            let qualifiedTeams = 0;
+
+            if (tournamentData.groups.length > 0) {
+                tournamentData.groups.forEach(group => {
+                    totalMatches += group.matches.length;
+                    totalPlayedMatches += group.matches.filter(match => match.completed).length;
+                    const standings = calculateGroupStandings(group);
+                    qualifiedTeams += group.teams.length >= 3 ? 2 : 1; // 2 squadre per girone se >= 3, altrimenti 1
+                });
+            }
+
+            if (tournamentData.knockoutMatches.length > 0) {
+                tournamentData.knockoutMatches.forEach(round => {
+                    totalMatches += round.length;
+                    totalPlayedMatches += round.filter(match => match.completed).length;
+                    qualifiedTeams += round.length * 2; // Ogni round ha il doppio delle squadre del precedente
+                });
+            }
+
+            overview.innerHTML = `
+                <h3>Panoramica Statistiche</h3>
+                <p><strong>Totale Squadre:</strong> ${totalTeams}</p>
+                <p><strong>Totale Partite:</strong> ${totalMatches}</p>
+                <p><strong>Partite Giocate:</strong> ${totalPlayedMatches}</p>
+                <p><strong>Squadre Qualificate:</strong> ${qualifiedTeams}</p>
+            `;
+        }
+    </script>
+</body>
+
+</html>
